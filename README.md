@@ -1,5 +1,5 @@
 # JPK-data-analysis-topography
-In this script Gwyddion libraries are used to read "JPK"file formats. These libraries are compatible with Python 2 so this script should be executed in Python 2 environments. In the beginning of the script a path to Python 2 "site-packages" i.e. ('/opt/local/Library/Frameworks/Python.framework/Versions/2.7/lib/python2.7/site-packages') is needed. Moreover, a path to the "pygwy" file is also crucial to be add to the script i.e. ('/opt/local/share/gwyddion/pygwy'). 
+In these scripts Gwyddion libraries are used to read "JPK"file formats. These libraries are compatible with Python 2 so this script should be executed in Python 2 environments. In the beginning of the script a path to Python 2 "site-packages" i.e. ('/opt/local/Library/Frameworks/Python.framework/Versions/2.7/lib/python2.7/site-packages') is needed. Moreover, a path to the "pygwy" file is also crucial to be add to the script i.e. ('/opt/local/share/gwyddion/pygwy'). 
 
 After a successful execution of the "FixToZero_PlaneLevel_HeightChannel_BatchProcessing.py" script, all the "JPK" file formats in the current directory is preprocessed and saved in the created "preprocessed" folder as a PNG file format.
 
