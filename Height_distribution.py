@@ -211,9 +211,11 @@ for filename in glob.glob( os.path.join(path, '*.jpk') ):
 h_hist = [x for x in h_hist if int(Size_min) < x < int(Size_max)]
 
 
+BIN = (int(Size_max) - int(Size_min))/5    #histgram bar height range is 5 nm
+
 
 fig = plt.figure(figsize=(20,12))
-plt.hist(h_hist, bins=50)
+plt.hist(h_hist, bins=BIN)
 plt.xlabel('Height (nm)',fontsize=20)
 plt.ylabel('Frequency',fontsize=20)
 plt.xticks(fontsize=20)
