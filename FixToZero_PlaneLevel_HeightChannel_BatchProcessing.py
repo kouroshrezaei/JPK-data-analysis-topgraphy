@@ -53,7 +53,6 @@ from mpl_toolkits.mplot3d import Axes3D
 
 start_time = time.time()
 
-#path = '/Users/kourosh/Documents/Kourosh/Physics/Python_Course_Summer_2019/Python_Gwyddion/AFM_vi5587_PFA_noPBS_May20_Lab2_XY'
 path = os.getcwd()
 if not os.path.exists('Processed'):
     os.makedirs('Processed')
