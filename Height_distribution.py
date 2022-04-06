@@ -50,13 +50,9 @@ import numpy as np
 import cv2
 import matplotlib as mpl
 import matplotlib.pyplot as plt
-import matplotlib.cbook as cbook
+
 import time
 
-
-from matplotlib_scalebar.scalebar import ScaleBar
-from mpl_toolkits.axes_grid1.axes_divider import make_axes_locatable
-from mpl_toolkits.mplot3d import Axes3D
 
 #format of Containers: '/int/data', '/int/data/title', '/int/meta', '/int/data/log'.
 
@@ -66,38 +62,26 @@ from mpl_toolkits.mplot3d import Axes3D
 # '/int/meta' = Container of channel number 'int'
 
 print("--------------------------------------------------------")
-Height_thresh = raw_input("Enter your Height threshold (something from 0.1 to 0.99) : ")
+Height_thresh = raw_input("Enter your Height threshold (something from 0.01 to 0.99) : ")
 
 print("--------------------------------------------------------")
-Size_min = raw_input("Enter your minimum sample diameter(in nm) to be selected : ")
+Size_min = raw_input("Enter your minimum sample Height (in nm) to be selected : ")
 print("--------------------------------------------------------")
-Size_max = raw_input("Enter your maximum sample diameter(in nm) to be selected : ")
+Size_max = raw_input("Enter your maximum sample Height (in nm) to be selected : ")
 print("--------------------------------------------------------")
-### function for concating the images in opencv library
 
-def hconcat_resize_min(im_list, interpolation=cv2.INTER_CUBIC):
-    h_min = min(im.shape[0] for im in im_list)
-    im_list_resize = [cv2.resize(im, (int(im.shape[1] * h_min / im.shape[0]), h_min), interpolation=interpolation)
-                      for im in im_list]
-    return cv2.hconcat(im_list_resize)
-
-
-
-#######################################################
 
 start_time = time.time()
 
-#path = '/Users/kourosh/Documents/Kourosh/Physics/Python_Course_Summer_2019/Python_Gwyddion/AFM_vi5587_PFA_noPBS_May20_Lab2_XY'
+
 path = os.getcwd()
-#Folder_Name=str('Process_HeightThreshhold='+Height_thresh+'_Diameter='+Size_min+'_'+Size_max+'nm')
-#if not os.path.exists(Folder_Name):
-    #os.makedirs(Folder_Name)
+
 channels = list()
 titles = list()
 
 
 h_hist = []
-d_hist = []
+#d_hist = []
 
 
 for filename in glob.glob( os.path.join(path, '*.jpk') ):
@@ -223,32 +207,21 @@ for filename in glob.glob( os.path.join(path, '*.jpk') ):
        
 
         h_hist.append(Height_data[center[0]][center[1]])
-        d_hist.append(dx*1e9*radius*2)
-h_hist = [x for x in h_hist if int(Size_min) < x < int(Size_max)/2]
-d_hist = [x for x in d_hist if int(Size_min) < x < int(Size_max)]
-#d_hist = [i * Dx for i in d_hist]
+        #d_hist.append(dx*1e9*radius*2)
+h_hist = [x for x in h_hist if int(Size_min) < x < int(Size_max)]
+
 
 
 fig = plt.figure(figsize=(20,12))
-plt.hist(h_hist, bins=20)
+plt.hist(h_hist, bins=50)
 plt.xlabel('Height (nm)',fontsize=20)
 plt.ylabel('Frequency',fontsize=20)
 plt.xticks(fontsize=20)
 plt.yticks(fontsize=20)
-plt.savefig("Histo_Processed_10.png",dpi=300)
+plt.savefig("Histo_Processed.png",dpi=300)
 plt.clf()
 plt.close()
 
-
-fig = plt.figure(figsize=(20,12))
-plt.hist(d_hist, bins=20, color='green')
-plt.xlabel('Diameters (nm)',fontsize=20)
-plt.ylabel('Frequency',fontsize=20)
-plt.xticks(fontsize=20)
-plt.yticks(fontsize=20)
-plt.savefig("Diameters_Processed.png",dpi=300)
-plt.clf()
-plt.close()
 
 number_JPK_files =str( len(fnmatch.filter(os.listdir(path), '*.jpk')) )
 print("---------------------------------------------")
