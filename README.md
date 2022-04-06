@@ -3,6 +3,6 @@ In these scripts Gwyddion libraries are used to read "JPK"file formats. These li
 
 After a successful execution of the "FixToZero_PlaneLevel_HeightChannel_BatchProcessing.py" script, all the "JPK" file formats in the current directory is preprocessed and saved in the created "preprocessed" folder as a PNG file format.
 
-In "Hieght_distribution.py" script computer vision (OpenCV) is used to create a statistical analysis of the measured samples. By running the script, user will be asked to provide the threshhold of the maximum Height of the samples (between 0.1 to 0.99) in order to create a mask over the selected regions. selecting lower threshhold means more areas will be selected which might include some unwanted debris in the sample. 
-After slecting Height threshhold, user should provide the diameter range of the interested areas (i.e. 20 nm to 500 nm).
-Based on the inputs, "Diameters_Processed.png" and "Histo_Processed_10.png" will present the diamter and height distribution of the selected areas in all the "JPK" files in the current directory.
+In "Hieght_distribution.py" script computer vision (OpenCV) is used to create a statistical analysis of the measured samples. By running the script, user will be asked to provide the threshhold of the maximum Height of the samples (between 0.01 to 0.99) in order to create a mask over the selected regions. selecting lower threshhold means more areas will be selected which might include some unwanted debris in the sample. 
+After slecting Height threshhold, user should provide the possible Height range of the interested areas (i.e. 20 nm to 500 nm).
+Based on the inputs "Histo_Processed.png" will present the height distribution of the selected areas in all the "JPK" files in the current directory.
